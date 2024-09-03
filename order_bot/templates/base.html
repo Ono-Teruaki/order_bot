@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'order_bot/css/base.css' %}" />
+    {% block extra_style %}{% endblock %}
+    <title>料亭 はらら</title>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <span class="header_title">
+                {% block header-title %}{% endblock %}
+            </span>
+        </div>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="footer">
+        <div class="footer-container">
+            <a href="{% url 'order_log' %}" class="footer_item" id="log_button">
+                <div class="footer-container__log">
+                    注文履歴
+                </div>
+            </a>
+            <a href="{% url 'checkout' %}" class="footer_item" id="checkout_button">
+                <div class="footer-container__checkout">
+                    お会計
+                </div>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

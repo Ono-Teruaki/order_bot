@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extra_style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order_bot/css/checkout.css' %}" />
+{% endblock %}
+    
+
+{% block header %}
+    {% block header-title %}
+        お会計
+    {% endblock %}
+{% endblock %}
+    
+    
+
+{% block content %}
+    <div class="checkout">お会計を完了しますか?</div>
+    <div class="button_set">
+        <form method="POST" action="{% url 'checkout' %}">
+            {% csrf_token %}
+            <button type="submit">会計する</button>
+        </form>
+        <button class="cancel" onclick="location.href='{% url 'home' %}'">
+            戻る
+        </button>
+    </div>
+{% endblock %}

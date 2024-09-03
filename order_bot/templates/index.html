@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extra_style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order_bot/css/index.css' %}" />
+{% endblock %}
+    
+
+{% block header %}
+    {% block header-title %}
+        料亭 はらら
+    {% endblock %}
+{% endblock %}
+    
+    
+
+{% block content %}
+    <div class="list_container">
+        <div class="genre_list">
+            {% for genre in menu_genres %}
+            <a href="{% url 'order' genre.id %}">
+                <div class="genre_item">
+                        <div class="genre_name">
+                            {{ genre.name }}
+                        </div>
+                        <div class="image_container">
+                            <img src="{{ genre.img.url }}" alt="">
+                        </div> 
+                </div>
+            </a>   
+            {% endfor %}         
+        </div>
+    </div>
+    
+{% endblock %}
+
+{% block footer %}
+    
+{% endblock %}
+    

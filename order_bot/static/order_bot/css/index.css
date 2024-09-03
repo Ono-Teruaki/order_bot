@@ -1,0 +1,38 @@
+.image_container {
+    width: 100%;
+    height: 80%;
+    display: block; 
+}
+
+img {
+    width: 100%;          /* 親要素の幅に合わせる */
+    height: 100%;         /* 親要素の高さに合わせる */
+    object-fit: cover;    /* 画像のはみ出す部分を切り取る */
+    display: block;       /* 余計な隙間をなくすためにblock表示に */
+    box-sizing: border-box; 
+}
+
+.list_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.genre_list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 95%;
+    gap: 10px;
+}
+
+.genre_item {
+    border: solid 1px black;
+    width: 100%;
+    height: 150px
+}
+.genre_name {
+    height: 20%;
+    font-size: 18px;
+    font-weight: 400;
+
+}

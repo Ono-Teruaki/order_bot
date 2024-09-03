@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extra_style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order_bot/css/order.css' %}" />
+{% endblock %}
+    
+
+{% block header %}
+    {% block header-title %}
+        {{ genre.name }}
+    {% endblock %}
+{% endblock %}
+    
+    
+
+{% block content %}
+    {% if message %}
+    <h3>{{ message }}</h3>
+        
+    {% endif %}
+
+    <div class="to_home"><a href="{% url 'home' %}">ホームに戻る</a></div>
+
+        
+    <div class="menu_list">
+        {% for menu in menu_list %}
+        <div class="menu_item">
+            <div class="menu_name">
+                {{ menu.name }}
+            </div>
+            <div class="image_container">
+                <img src="{{ menu.img.url }}" alt="">
+            </div> 
+            <div class="link_container">
+                <a href="{% url 'confirm' menu.id %}" >
+                    <div class="order_button">
+                        注文する
+                    </div>
+                </a>
+            </div>
+        </div>
+        {% endfor %}         
+    </div>
+    
+{% endblock %}
+
+{% block footer %}
+    
+{% endblock %}
+    

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注文履歴</title>
+</head>
+<body>
+    <h3>注文履歴</h3>
+    <div class="log_list">
+        
+        {% for log in log_list %}
+            <div class="log_item">
+                <span class="menu">{{ log.menu.name }}</span>
+                <span class="price">{{ log.menu.price }}円</span>
+            </div>
+            
+        {% endfor %}
+        <div class="sum">合計 {{ sum }}円</div>
+            
+    </div>
+    <button class="cancel" onclick="location.href='{% url 'home' %}'">ホームに戻る</button>
+</body>
+</html>

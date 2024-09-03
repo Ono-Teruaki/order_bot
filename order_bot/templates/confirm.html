@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extra_style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'order_bot/css/confirm.css' %}" />
+
+{% endblock %}
+    
+
+{% block header %}
+    {% block header-title %}
+    {% endblock %}
+{% endblock %}
+    
+    
+
+{% block content %}
+<div class="confirm_container">
+    <div class="text">注文を確定しますか?</div>
+    <div class="info">
+        <div class="name">
+            {{ menu.name }}
+        </div>
+        <div class="price">
+            {{ menu.price }}円
+        </div>
+    </div>
+    <div class="image">
+        <img src="{{ menu.img.url }}" alt="">
+    </div>
+    <div class="button_set">
+        <form method="POST" action="{% url 'confirm' pk=menu.id %}">
+            {% csrf_token %}
+            <button type="submit">
+                注文を確定する
+            </button>
+        </form>
+        <button class="cancel" onclick="location.href='{% url 'order' pk=menu.id %}'">
+        キャンセル
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock footer %}
+    
