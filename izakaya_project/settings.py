@@ -21,7 +21,7 @@ if os.path.isfile('.env'): # .envファイルが存在しない時にもエラ�
     environ.Env.read_env('.env')
 
     DEBUG = env('DEBUG')
-    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+ALLOWED_HOSTS = ['127.0.0.1', 'daily-report.onrender.com']
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
