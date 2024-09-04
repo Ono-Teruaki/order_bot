@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import environ
 from decouple import config
+from dj_database_url import parse as dburl
 
 if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
     env = environ.Env(DEBUG=(bool, False),)

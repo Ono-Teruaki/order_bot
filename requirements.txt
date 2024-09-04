@@ -8,6 +8,7 @@ attrs==24.2.0
 certifi==2024.8.30
 charset-normalizer==3.3.2
 Deprecated==1.2.14
+dj-database-url==2.2.0
 Django==5.1.1
 django-environ==0.11.2
 frozenlist==1.4.1
