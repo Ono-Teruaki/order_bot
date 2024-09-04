@@ -15,11 +15,9 @@ import os
 import environ
 
 if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
-    env = environ.Env(DEBUG=(bool, False),)
-    environ.Env.read_env('.env')
 
-    DEBUG = env('DEBUG')
-    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+    DEBUG = os.getenv('DEBUG')
+    ALLOWED_HOSTS = os.getenv.list('ALLOWED_HOSTS')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -139,6 +137,6 @@ LINE_CHANNEL_ACCESS_TOKEN = os.getenv('LINE_CHANNEL_ACCESS_TOKEN', "")
 LINE_CHANNEL_SECRET = os.getenv('LINE_CHANNEL_SECRET', "")
 GROUP_ID = os.getenv('GROUP_ID', "")
 
-SUPERUSER_NAME = env("SUPERUSER_NAME")
-SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
-SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
+SUPERUSER_NAME = os.getenv("SUPERUSER_NAME")
+SUPERUSER_EMAIL = os.getenv("SUPERUSER_EMAIL")
+SUPERUSER_PASSWORD = os.getenv("SUPERUSER_PASSWORD")
