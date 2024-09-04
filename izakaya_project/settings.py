@@ -13,19 +13,15 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 from pathlib import Path
 import os
 import environ
-from decouple import config
-from dj_database_url import parse as dburl
 
 if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
     env = environ.Env(DEBUG=(bool, False),)
     environ.Env.read_env('.env')
 
     DEBUG = env('DEBUG')
-ALLOWED_HOSTS = []
-
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+    ALLOWED_HOSTS = []
+    if os.getenv("ALLOWED_HOSTS"):
+        ALLOWED_HOSTS.append(os.getenv("ALLOWED_HOSTS"))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -57,7 +53,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -66,8 +61,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'izakaya_project.urls'
-
-default_dburl = "sqlite:///" + str(BASE_DIR / "db.sqlite3")
 
 TEMPLATES = [
     {
@@ -92,7 +85,10 @@ WSGI_APPLICATION = 'izakaya_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    "default": config("DATABASE_URL", default=default_dburl, cast=dburl),
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -132,8 +128,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# 以下を追加
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
