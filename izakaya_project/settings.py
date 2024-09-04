@@ -15,9 +15,11 @@ import os
 import environ
 
 if os.path.isfile('.env'): # .envファイルが存在しない時にもエラーが発生しないようにする
+    env = environ.Env(DEBUG=(bool, False),)
+    environ.Env.read_env('.env')
 
-    DEBUG = os.getenv('DEBUG')
-    ALLOWED_HOSTS = os.getenv.list('ALLOWED_HOSTS')
+    DEBUG = env('DEBUG')
+    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
